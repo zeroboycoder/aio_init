@@ -29,7 +29,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post("http://54.66.31.231:8000/api/init", {
+      const res = await axios.post("https://dev.allin1.click/api/", {
         hashData,
         signature,
         agentCode,
