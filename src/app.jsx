@@ -64,6 +64,9 @@ const App = () => {
       if (res.data.status === "success") {
         alert("Withdraw Successfully");
       }
+      if (res.data.status === "error") {
+        alert(res.data.msg);
+      }
     } catch (error) {
       console.log(error);
     }
