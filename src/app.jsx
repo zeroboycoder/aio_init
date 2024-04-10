@@ -8,7 +8,7 @@ const App = () => {
   const [amount, setAmount] = useState();
   const [agentCode, setAgentCode] = useState();
   const [secretKey, setSecretKey] = useState();
-  const [domain, setDomain] = useState();
+  const [api, setApi] = useState();
   const [language, setLanguage] = useState("en");
 
   const clickHandler = async () => {
@@ -19,7 +19,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
-        domain,
+        api,
         language,
       };
       const hashData = cryptoJs.AES.encrypt(
@@ -29,7 +29,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post("https://dev.allin1.click/api/", {
+      const res = await axios.post("https://dev.allin1.click/api/init", {
         hashData,
         signature,
         agentCode,
@@ -41,61 +41,124 @@ const App = () => {
     }
   };
 
+  const exitHandler = async () => {
+    try {
+      const data = {
+        playerPhone,
+      };
+      const hashData = cryptoJs.AES.encrypt(
+        JSON.stringify(data),
+        secretKey
+      ).toString();
+      const signature = cryptoJs
+        .HmacSHA1(JSON.stringify(data), secretKey)
+        .toString();
+      const res = await axios.post("https://dev.allin1.click/api/exit", {
+        hashData,
+        signature,
+        agentCode,
+      });
+      if (res.data.status === "success") {
+        alert("Withdraw Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
+    <>
       <div>
-        <input
-          type="text"
-          placeholder="Player Phone"
-          onChange={(e) => setPlayerPhone(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Player Name"
-          onChange={(e) => setPlayerName(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Amount"
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Agent Code"
-          onChange={(e) => setAgentCode(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Secret Key"
-          onChange={(e) => setSecretKey(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Domain"
-          onChange={(e) => setDomain(e.target.value)}
-        />
+        <h1>Init App</h1>
         <div>
-          <select name="language" onChange={(e) => setLanguage(e.target.value)}>
-            <option value="en">English</option>
-            <option value="zh">Chinese</option>
-            <option value="mm">Myanmar</option>
-          </select>
+          <div>
+            <input
+              type="text"
+              placeholder="Player Phone"
+              onChange={(e) => setPlayerPhone(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Player Name"
+              onChange={(e) => setPlayerName(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Amount"
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Agent Code"
+              onChange={(e) => setAgentCode(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Secret Key"
+              onChange={(e) => setSecretKey(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="API Endpoint"
+              onChange={(e) => setApi(e.target.value)}
+            />
+            <div>
+              <select
+                name="language"
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                <option value="en">English</option>
+                <option value="zh">Chinese</option>
+                <option value="mm">Myanmar</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <button onClick={clickHandler}>Go To App</button>
+          </div>
         </div>
       </div>
+
       <div>
-        <button onClick={clickHandler}>Go To App</button>
+        <h1>Withdraw App</h1>
+        <div>
+          <div>
+            <input
+              type="text"
+              placeholder="Player Phone"
+              onChange={(e) => setPlayerPhone(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Agent Code"
+              onChange={(e) => setAgentCode(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Secret Key"
+              onChange={(e) => setSecretKey(e.target.value)}
+            />
+          </div>
+          <div>
+            <button onClick={exitHandler}>Exit App</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
