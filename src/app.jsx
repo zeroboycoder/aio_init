@@ -34,6 +34,9 @@ const App = () => {
         signature,
         agentCode,
       });
+      if (res.data.status === "error") {
+        alert(res.data.msg);
+      }
       const url = res.data.data;
       return window.open(url);
     } catch (error) {
