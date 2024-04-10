@@ -34,12 +34,10 @@ const App = () => {
         signature,
         agentCode,
       });
-      if (res.data.status === "error") {
-        alert(res.data.msg);
-      }
       const url = res.data.data;
       return window.open(url);
     } catch (error) {
+      alert(error.response.data.msg);
       console.log(error);
     }
   };
@@ -64,10 +62,8 @@ const App = () => {
       if (res.data.status === "success") {
         alert("Withdraw Successfully");
       }
-      if (res.data.status === "error") {
-        alert(res.data.msg);
-      }
     } catch (error) {
+      alert(error.response.data.msg);
       console.log(error);
     }
   };
