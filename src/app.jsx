@@ -8,7 +8,7 @@ const App = () => {
   const [amount, setAmount] = useState();
   const [agentCode, setAgentCode] = useState();
   const [secretKey, setSecretKey] = useState();
-  const [api, setApi] = useState();
+  const [endpoint, setEndpoint] = useState();
   const [language, setLanguage] = useState("en");
 
   const clickHandler = async () => {
@@ -19,7 +19,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
-        api,
+        endpoint,
         language,
       };
       const hashData = cryptoJs.AES.encrypt(
@@ -29,7 +29,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post(`${api}/api/init`, {
+      const res = await axios.post(`${endpoint}/api/init`, {
         hashData,
         signature,
         agentCode,
@@ -54,7 +54,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post(`${api}/api/exit`, {
+      const res = await axios.post(`${endpoint}/api/exit`, {
         hashData,
         signature,
         agentCode,
@@ -112,7 +112,7 @@ const App = () => {
             <input
               type="text"
               placeholder="API Endpoint"
-              onChange={(e) => setApi(e.target.value)}
+              onChange={(e) => setEndpoint(e.target.value)}
             />
             <div>
               <select
@@ -158,7 +158,7 @@ const App = () => {
               <input
                 type="text"
                 placeholder="API Endpoint"
-                onChange={(e) => setApi(e.target.value)}
+                onChange={(e) => setEndpoint(e.target.value)}
               />
             </div>
           </div>
