@@ -29,7 +29,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post("https://dev.allin1.click/api/init", {
+      const res = await axios.post(`${api}/api/init`, {
         hashData,
         signature,
         agentCode,
@@ -54,7 +54,7 @@ const App = () => {
       const signature = cryptoJs
         .HmacSHA1(JSON.stringify(data), secretKey)
         .toString();
-      const res = await axios.post("https://dev.allin1.click/api/exit", {
+      const res = await axios.post(`${api}/api/exit`, {
         hashData,
         signature,
         agentCode,
@@ -154,6 +154,13 @@ const App = () => {
               placeholder="Secret Key"
               onChange={(e) => setSecretKey(e.target.value)}
             />
+            <div>
+              <input
+                type="text"
+                placeholder="API Endpoint"
+                onChange={(e) => setApi(e.target.value)}
+              />
+            </div>
           </div>
           <div>
             <button onClick={exitHandler}>Exit App</button>
