@@ -8,6 +8,7 @@ const App = () => {
   const [amount, setAmount] = useState();
   const [agentCode, setAgentCode] = useState();
   const [secretKey, setSecretKey] = useState();
+  const [gameType, setGameType] = useState();
   const [endpoint, setEndpoint] = useState();
   const [language, setLanguage] = useState("en");
 
@@ -19,7 +20,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
-        endpoint,
+        gameType,
         language,
       };
       const hashData = cryptoJs.AES.encrypt(
@@ -106,6 +107,13 @@ const App = () => {
               type="text"
               placeholder="Secret Key"
               onChange={(e) => setSecretKey(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Game Type (twod, threed)"
+              onChange={(e) => setGameType(e.target.value)}
             />
           </div>
           <div>
