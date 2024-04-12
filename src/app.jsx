@@ -35,7 +35,7 @@ const App = () => {
         signature,
         agentCode,
       });
-      const url = `https://dev.allin1.click/${res.data.data.en}/${res.data.data.access_token}`;
+      const url = `https://dev.allin1.click/${res.data.data.language}/${res.data.data.access_token}`;
       return window.open(url);
     } catch (error) {
       alert(error.response.data.msg);
