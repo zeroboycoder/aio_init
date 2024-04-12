@@ -35,7 +35,7 @@ const App = () => {
         signature,
         agentCode,
       });
-      const url = res.data.data;
+      const url = `https://dev.allin1.click/${res.data.data.en}/${res.data.data.access_token}`;
       return window.open(url);
     } catch (error) {
       alert(error.response.data.msg);
@@ -109,13 +109,13 @@ const App = () => {
               onChange={(e) => setSecretKey(e.target.value)}
             />
           </div>
-          <div>
+          {/* <div>
             <input
               type="text"
               placeholder="Game Type (twod, threed)"
               onChange={(e) => setGameType(e.target.value)}
             />
-          </div>
+          </div> */}
           <div>
             <input
               type="text"
