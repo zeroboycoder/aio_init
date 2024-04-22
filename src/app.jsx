@@ -23,6 +23,7 @@ const App = () => {
         gameType: "twod",
         language,
       };
+      console.log(data);
       const hashData = cryptoJs.AES.encrypt(
         JSON.stringify(data),
         secretKey
@@ -35,10 +36,12 @@ const App = () => {
         signature,
         agentCode,
       });
-      const url = `https://dev.allin1.click/home/${res.data.data.language}/${res.data.data.access_token}`;
-      return window.open(url);
+      const url = res.data.data.url;
+      const [token, lang] = url.split("t=")[1].split("&lang=");
+      const finalRoute = `https://dev.allin1.click/home/${lang}/${token}`;
+      return window.open(finalRoute);
     } catch (error) {
-      alert(error.response.data.msg);
+      alert(error.response);
       console.log(error);
     }
   };
