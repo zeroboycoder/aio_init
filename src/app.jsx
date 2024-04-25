@@ -41,8 +41,8 @@ const App = () => {
       const finalRoute = `https://dev.allin1.click/home/${lang}/${token}`;
       return window.open(finalRoute);
     } catch (error) {
-      alert(error.response);
-      console.log(error);
+      alert(error?.response?.data?.msg);
+      console.log(error?.response?.data?.msg);
     }
   };
 
