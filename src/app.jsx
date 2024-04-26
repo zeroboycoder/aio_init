@@ -21,7 +21,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
-        domain,
+        redirectUrl: domain,
         gameType: "twod",
         language,
       };
@@ -117,7 +117,7 @@ const App = () => {
           <div>
             <input
               type="text"
-              placeholder="Domain"
+              placeholder="Redirect URL"
               onChange={(e) => setDomain(e.target.value)}
             />
           </div>
