@@ -10,6 +10,7 @@ const App = () => {
   const [secretKey, setSecretKey] = useState();
   const [gameType, setGameType] = useState();
   const [endpoint, setEndpoint] = useState();
+  const [domain, setDomain] = useState();
   const [language, setLanguage] = useState("en");
 
   const clickHandler = async () => {
@@ -20,6 +21,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
+        domain,
         gameType: "twod",
         language,
       };
@@ -110,6 +112,13 @@ const App = () => {
               type="text"
               placeholder="Secret Key"
               onChange={(e) => setSecretKey(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Domain"
+              onChange={(e) => setDomain(e.target.value)}
             />
           </div>
           {/* <div>
