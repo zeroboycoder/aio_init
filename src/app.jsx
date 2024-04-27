@@ -40,7 +40,7 @@ const App = () => {
       });
       const url = res.data.data.url;
       const [token, langTerms] = url.split("t=")[1].split("&lang=");
-      const [lang, terms] = langTerms.split("$terms");
+      const [lang, terms] = langTerms.split("&terms");
       const finalRoute = `https://dev.allin1.click/home/${lang}/${token}`;
       return window.open(finalRoute);
     } catch (error) {
