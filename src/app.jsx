@@ -8,6 +8,7 @@ const App = () => {
   const [amount, setAmount] = useState();
   const [agentCode, setAgentCode] = useState();
   const [secretKey, setSecretKey] = useState();
+  const [imageUrl, setImageUrl] = useState();
   const [gameType, setGameType] = useState("twod");
   const [endpoint, setEndpoint] = useState();
   const [domain, setDomain] = useState();
@@ -21,6 +22,7 @@ const App = () => {
         amount,
         agentCode,
         secretKey,
+        imageUrl,
         redirectUrl: domain,
         gameType,
         language,
@@ -113,6 +115,13 @@ const App = () => {
               type="text"
               placeholder="Secret Key"
               onChange={(e) => setSecretKey(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="User Image Url"
+              onChange={(e) => setImageUrl(e.target.value)}
             />
           </div>
           <div>
