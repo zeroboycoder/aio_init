@@ -22,7 +22,7 @@ const App = () => {
         agentCode,
         secretKey,
         redirectUrl: domain,
-        gameType: "twod",
+        gameType,
         language,
       };
       console.log(data);
@@ -122,13 +122,15 @@ const App = () => {
               onChange={(e) => setDomain(e.target.value)}
             />
           </div>
-          {/* <div>
-            <input
-              type="text"
-              placeholder="Game Type (twod, threed)"
+          <div>
+            <select
+              name="language"
               onChange={(e) => setGameType(e.target.value)}
-            />
-          </div> */}
+            >
+              <option value="twod">2D</option>
+              <option value="threed">3D</option>
+            </select>
+          </div>
           <div>
             <input
               type="text"
