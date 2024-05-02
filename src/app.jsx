@@ -8,7 +8,7 @@ const App = () => {
   const [amount, setAmount] = useState();
   const [agentCode, setAgentCode] = useState();
   const [secretKey, setSecretKey] = useState();
-  const [gameType, setGameType] = useState();
+  const [gameType, setGameType] = useState("twod");
   const [endpoint, setEndpoint] = useState();
   const [domain, setDomain] = useState();
   const [language, setLanguage] = useState("en");
@@ -123,6 +123,13 @@ const App = () => {
             />
           </div>
           <div>
+            <input
+              type="text"
+              placeholder="API Endpoint"
+              onChange={(e) => setEndpoint(e.target.value)}
+            />
+          </div>
+          <div>
             <select
               name="language"
               onChange={(e) => setGameType(e.target.value)}
@@ -132,21 +139,14 @@ const App = () => {
             </select>
           </div>
           <div>
-            <input
-              type="text"
-              placeholder="API Endpoint"
-              onChange={(e) => setEndpoint(e.target.value)}
-            />
-            <div>
-              <select
-                name="language"
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                <option value="en">English</option>
-                <option value="zh">Chinese</option>
-                <option value="mm">Myanmar</option>
-              </select>
-            </div>
+            <select
+              name="language"
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              <option value="en">English</option>
+              <option value="zh">Chinese</option>
+              <option value="mm">Myanmar</option>
+            </select>
           </div>
           <div>
             <button onClick={clickHandler}>Go To App</button>
