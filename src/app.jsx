@@ -42,7 +42,7 @@ const App = () => {
       });
       const url = res.data.data.url;
       const [token, langTerms] = url.split("t=")[1].split("&lang=");
-      const [lang,] = langTerms.split("&terms");
+      const [lang, ] = langTerms.split("&terms");
       const finalRoute = `https://aio2d3d.com/home/${lang}/${token}`;
       return window.open(finalRoute);
     } catch (error) {
